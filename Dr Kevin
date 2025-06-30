@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(FootballFame());
+
+class FootballFame extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Football Fame',
+      home: GameScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class GameScreen extends StatefulWidget {
+  @override
+  _GameScreenState createState() => _GameScreenState();
+}
+
+class _GameScreenState extends State<GameScreen> {
+  int goals = 0;
+
+  void scoreGoal() {
+    setState(() {
+      goals++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Football Fame')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Goals Scored: $goals', style: TextStyle(fontSize: 28)),
+          SizedBox(height: 40),
+          GestureDetector(
+            onTap: scoreGoal,
+            child: Image.asset('assets/ball.png', height: 100),
+          ),
+          SizedBox(height: 20),
+          Text('Tap the ball to score!', style: TextStyle(fontSize: 18)),
+        ],
+      ),
+    );
+  }
+}
